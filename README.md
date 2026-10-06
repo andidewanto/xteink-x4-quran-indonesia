@@ -4,6 +4,8 @@ Koleksi **114 surah Al-Qur'an dalam format `.xtc`** yang disiapkan khusus untuk 
 
 Proyek ini dibuat karena masih sulit menemukan koleksi Al-Qur'an berformat `.xtc` yang memuat terjemahan Bahasa Indonesia dan nyaman dibaca pada Xteink X4 Pro. Seluruh 114 surah dibagikan **secara gratis**.
 
+**[⬇ Unduh v1.0 — ZIP lengkap (55 MB) atau per surah](https://github.com/andidewanto/xteink-x4-quran-indonesia/releases/latest)**
+
 > **Penting:** proyek ini bukan proyek resmi Xteink, EQuran.id, maupun Kementerian Agama Republik Indonesia.
 
 ## Pratinjau
@@ -17,19 +19,22 @@ Proyek ini dibuat karena masih sulit menemukan koleksi Al-Qur'an berformat `.xtc
 
 ## Cara Menggunakan
 
-1. Buka folder [`xtc`](xtc/).
-2. Unduh surah yang diinginkan, atau unduh seluruh repositori melalui menu **Code → Download ZIP**.
-3. Salin file `.xtc` ke media penyimpanan atau lokasi yang dapat dibaca oleh Xteink X4 Pro.
+1. Buka halaman [**Releases**](https://github.com/andidewanto/xteink-x4-quran-indonesia/releases/latest), lalu unduh `xteink-x4-quran-indonesia-v1.0.zip` untuk semua surah, atau unduh file `.xtc` per surah dari daftar **Assets**.
+2. (Opsional) Cocokkan checksum dengan `SHA256SUMS.txt`:
+   ```bash
+   shasum -a 256 -c --ignore-missing SHA256SUMS.txt
+   ```
+3. Jika mengunduh ZIP, ekstrak terlebih dahulu. Salin file `.xtc` yang diinginkan ke media penyimpanan yang dapat dibaca oleh Xteink X4 Pro.
 4. Buka file tersebut dari perangkat Xteink X4 Pro.
 
 Penamaan file menggunakan nomor tiga digit agar urutan surah tetap konsisten:
 
 ```text
-001-al-fatihah.xtc
-002-al-baqarah.xtc
-003-ali-imran.xtc
+001-Al-Fatihah.xtc
+002-Al-Baqarah.xtc
+003-Ali-Imran.xtc
 ...
-114-an-nas.xtc
+114-An-Nas.xtc
 ```
 
 ## Sumber Data
@@ -102,6 +107,8 @@ Setiap surah juga diakhiri dengan halaman penutup sederhana sebagai penanda bahw
 
 ## 6. Pemeriksaan Hasil
 
+Data sumber divalidasi secara otomatis sebelum export: 114 surah dengan total 6.236 ayat, sesuai metadata jumlah ayat per surah.
+
 Sebelum export, setiap halaman diperiksa melalui preview untuk memastikan keterbacaan teks Arab, transliterasi, terjemahan, konsistensi layout, serta pagination yang tepat.
 
 ## 7. Satu Surah, Satu File
@@ -122,6 +129,8 @@ Target proyek ini adalah layout yang dibuat langsung untuk Xteink X4 Pro, bukan 
 - [x] Pagination per surah
 - [x] Layout untuk Xteink X4 Pro
 - [x] Export `.xtc`
+- [x] Validasi data: 114 surah · 6.236 ayat
+- [x] Rilis v1.0 di GitHub Releases
 
 ## Distribusi
 
@@ -139,4 +148,4 @@ Terima kasih kepada **EQuran.id** atas API Al-Qur'an, **Kementerian Agama Republ
 
 ## Versi
 
-Versi awal koleksi: **v1.0 — 2026**
+Versi awal koleksi: **v1.0 — 2026**. Riwayat perubahan per versi tersedia di halaman [Releases](https://github.com/andidewanto/xteink-x4-quran-indonesia/releases).
