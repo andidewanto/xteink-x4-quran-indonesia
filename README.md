@@ -2,7 +2,7 @@
 
 Koleksi **114 surah Al-Qur'an dalam format `.xtc`** yang disiapkan khusus untuk dibaca pada **Xteink X4 Pro**. Setiap surah dilengkapi dengan teks Arab, transliterasi Latin, terjemahan Bahasa Indonesia, nomor ayat, metadata surah, dan tata letak yang dioptimalkan untuk layar e-paper berukuran kecil.
 
-Proyek ini dibuat karena masih sulit menemukan koleksi Al-Qur'an berformat `.xtc` yang memuat terjemahan Bahasa Indonesia dan nyaman dibaca pada Xteink X4 Pro. Seluruh 114 surah dibagikan **secara gratis** untuk penggunaan pribadi dan edukasi.
+Proyek ini dibuat karena masih sulit menemukan koleksi Al-Qur'an berformat `.xtc` yang memuat terjemahan Bahasa Indonesia dan nyaman dibaca pada Xteink X4 Pro. Seluruh 114 surah dibagikan **secara gratis**.
 
 > **Penting:** proyek ini bukan proyek resmi Xteink, EQuran.id, maupun Kementerian Agama Republik Indonesia.
 
