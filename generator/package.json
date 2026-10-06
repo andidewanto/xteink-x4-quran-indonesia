@@ -1,0 +1,11 @@
+{
+  "name": "qtx",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "vite": "^7.1.5"
+  }
+}

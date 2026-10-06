@@ -4,3 +4,4 @@ Thumbs.db
 *.bak
 *.xtc
 *.zip
+node_modules/
