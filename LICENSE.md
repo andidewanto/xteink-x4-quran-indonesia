@@ -16,7 +16,7 @@ Pemelihara repositori tidak memberikan lisensi atas materi pihak ketiga yang ter
 
 ## Source Code Generator
 
-Apabila source code generator dipublikasikan di folder `generator/`, source code dapat diberi lisensi terpisah oleh pemilik proyek. Lisensi source code tidak otomatis memberikan hak atas data Al-Qur'an, transliterasi, terjemahan, audio, atau materi pihak ketiga lainnya.
+Source code generator di folder `generator/` dilisensikan di bawah **MIT License**; lihat [`generator/LICENSE`](generator/LICENSE). Lisensi MIT hanya berlaku untuk kode. Lisensi source code tidak otomatis memberikan hak atas data Al-Qur'an, transliterasi, terjemahan, audio, atau materi pihak ketiga lainnya.
 
 ## Dokumentasi dan Screenshot
 

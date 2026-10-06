@@ -61,3 +61,7 @@ Endpoint ini menulis file ke disk; jalankan hanya di `127.0.0.1`, jangan dipasan
 ## Format `.xtc`
 
 Setiap halaman dirender pada kanvas 480 × 800 px dengan html2canvas, dikonversi menjadi bitmap 1-bit (ambang luminans 160) dalam blok `XTG`, lalu digabung menjadi satu kontainer `XTC` berisi tabel indeks halaman.
+
+## Lisensi
+
+Kode generator: [MIT](LICENSE). Lisensi ini tidak mencakup data Al-Qur'an, transliterasi, dan terjemahan yang diambil dari API; lihat [`../LICENSE.md`](../LICENSE.md) dan [`../ATTRIBUTION.md`](../ATTRIBUTION.md).
