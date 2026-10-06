@@ -215,11 +215,63 @@ $judul = 'Quran';
       padding: var(--space-6);
     }
 
+    .layar-kolom {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-3);
+    }
+
     .screen {
       position: relative;
       width: calc(55.418mm * 1.32);
       height: calc(92.364mm * 1.32);
       overflow: hidden;
+    }
+
+    .screenshot-btn {
+      min-height: 40px;
+      border: 0;
+      border-radius: 20px;
+      background: var(--md-surface-container);
+      color: var(--md-on-surface);
+      font: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+    }
+
+    .screenshot-btn:disabled {
+      opacity: 0.7;
+      cursor: default;
+    }
+
+    .lompat {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .lompat label {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--md-on-surface-variant);
+    }
+
+    .lompat input {
+      width: 100%;
+      min-height: 40px;
+      padding: 0 var(--space-4);
+      border: 1px solid var(--md-outline);
+      border-radius: 20px;
+      background: var(--md-surface);
+      color: var(--md-on-surface);
+      font: inherit;
+    }
+
+    .lompat input:disabled {
+      opacity: 0.7;
     }
 
     .page {
@@ -527,12 +579,19 @@ $judul = 'Quran';
           <path fill="currentColor" d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z"/>
         </svg>
       </button>
-      <div class="screen">
-        <div id="page" class="page">
-          <div id="page-body" class="page-body">
-            <p class="status">Pilih surat untuk memuat ayat.</p>
+      <div class="layar-kolom">
+        <div class="screen">
+          <div id="page" class="page">
+            <div id="page-body" class="page-body">
+              <p class="status">Pilih surat untuk memuat ayat.</p>
+            </div>
           </div>
         </div>
+        <form id="lompat-form" class="lompat">
+          <label for="lompat">Ayat</label>
+          <input id="lompat" type="number" min="1" step="1" inputmode="numeric" placeholder="Nomor" disabled>
+        </form>
+        <button id="screenshot" class="screenshot-btn" type="button" disabled>SCREENSHOT</button>
       </div>
       <button id="after" class="chevron" type="button" aria-label="After" disabled>
         <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
@@ -551,6 +610,9 @@ $judul = 'Quran';
     const pageBody = document.getElementById("page-body");
     const beforeBtn = document.getElementById("before");
     const afterBtn = document.getElementById("after");
+    const screenshotBtn = document.getElementById("screenshot");
+    const lompatForm = document.getElementById("lompat-form");
+    const lompatEl = document.getElementById("lompat");
     const cariEl = document.getElementById("cari");
     const validasiEl = document.getElementById("validasi");
     const JUMLAH_AYAT_WAJIB = 6236;
@@ -656,6 +718,9 @@ $judul = 'Quran';
       detailEl.append(menunggu);
       ayatList = [];
       suratData = null;
+      screenshotBtn.disabled = true;
+      lompatEl.disabled = true;
+      lompatEl.value = "";
       indeks = 0;
       pecahan = new Map();
       halamanCache = null;
@@ -719,13 +784,17 @@ $judul = 'Quran';
       pecahan = new Map();
       halamanCache = null;
       indeks = 0;
+      screenshotBtn.disabled = false;
+      lompatEl.disabled = false;
+      lompatEl.max = data.jumlahAyat;
+      lompatEl.value = "";
       tampilkanHalaman();
     }
 
     function infoAyat(ayat) {
       let info = pecahan.get(ayat.nomorAyat);
       if (!info) {
-        info = { susun: "penuh", arab: null, id: null };
+        info = { susun: "penuh", arab: null, latin: null, id: null };
         pecahan.set(ayat.nomorAyat, info);
       }
       return info;
@@ -748,7 +817,13 @@ $judul = 'Quran';
           list.push({ jenis: "arab", ayat });
         }
         if (susun === "tiga" || info.id) {
-          list.push({ jenis: "latin", ayat });
+          if (info.latin) {
+            for (const cuplikan of info.latin) {
+              list.push({ jenis: "latin", ayat, cuplikan });
+            }
+          } else {
+            list.push({ jenis: "latin", ayat });
+          }
           if (info.id) {
             for (const cuplikan of info.id) {
               list.push({ jenis: "id", ayat, cuplikan });
@@ -785,6 +860,15 @@ $judul = 'Quran';
           gambarAyat(ayat, "makna");
           if (tidakMuat()) {
             info.susun = "tiga";
+          }
+        }
+        if ((info.susun === "tiga" || info.id) && !info.latin) {
+          gambarAyat(ayat, "latin");
+          if (tidakMuat()) {
+            const bagian = pecahBlok(ayat, "latin", teks(ayat.teksLatin));
+            if (bagian.length > 1) {
+              info.latin = bagian;
+            }
           }
         }
         if ((info.susun === "tiga" || info.id) && !info.id) {
@@ -875,9 +959,9 @@ $judul = 'Quran';
         return;
       }
       const info = infoAyat(item.ayat);
-      halamanCache = null;
       if (item.jenis === "penuh") {
         info.susun = "makna";
+        halamanCache = null;
         tampilkanHalaman();
         return;
       }
@@ -885,6 +969,7 @@ $judul = 'Quran';
         const bagian = pecahBlok(item.ayat, "arab", teks(item.ayat.teksArab));
         if (bagian.length > 1) {
           info.arab = bagian;
+          halamanCache = null;
           tampilkanHalaman();
           return;
         }
@@ -893,6 +978,7 @@ $judul = 'Quran';
       }
       if (item.jenis === "makna") {
         info.susun = "tiga";
+        halamanCache = null;
         tampilkanHalaman();
         return;
       }
@@ -900,6 +986,16 @@ $judul = 'Quran';
         const bagian = pecahBlok(item.ayat, "id", teks(item.ayat.teksIndonesia));
         if (bagian.length > 1) {
           info.id = bagian;
+          halamanCache = null;
+          tampilkanHalaman();
+          return;
+        }
+      }
+      if (item.jenis === "latin") {
+        const bagian = pecahBlok(item.ayat, "latin", teks(item.ayat.teksLatin));
+        if (bagian.length > 1) {
+          info.latin = bagian;
+          halamanCache = null;
           tampilkanHalaman();
           return;
         }
@@ -922,7 +1018,7 @@ $judul = 'Quran';
       let sisa = sumber.trim().split(/\s+/).filter(Boolean);
       let lanjutan = false;
       let pengaman = 0;
-      while (sisa.length && pengaman < 8) {
+      while (sisa.length && pengaman < 100) {
         pengaman += 1;
         let terbaik = 0;
         let low = 1;
@@ -1015,7 +1111,7 @@ $judul = 'Quran';
       if (jenis === "penuh" || jenis === "makna" || jenis === "latin") {
         const latin = document.createElement("p");
         latin.className = "teks-latin";
-        latin.textContent = teks(ayat.teksLatin);
+        latin.textContent = (jenis === "latin" && cuplikan) || teks(ayat.teksLatin);
         section.append(latin);
       }
       if (jenis === "penuh" || jenis === "makna" || jenis === "id") {
@@ -1205,6 +1301,69 @@ $judul = 'Quran';
       }
     }
 
+    function namaScreenshot() {
+      const latin = (suratData.namaLatin || "surat").replace(/[^\w.-]+/g, "-");
+      const list = daftarHalaman();
+      const item = list[indeks];
+      const halaman = !item || item.jenis === "cover" ? "cover" : String(indeks);
+      return latin + "-" + halaman + ".jpg";
+    }
+
+    async function simpanScreenshot(tombol) {
+      if (!suratData || tombol.disabled) {
+        return;
+      }
+      const label = tombol.textContent;
+      tombol.disabled = true;
+      tombol.textContent = "SCREENSHOT…";
+      try {
+        const render = await muatKanvas();
+        const stage = document.getElementById("page").cloneNode(true);
+        stage.removeAttribute("id");
+        stage.querySelectorAll("[id]").forEach((el) => el.removeAttribute("id"));
+        stage.style.position = "fixed";
+        stage.style.left = "-2000px";
+        stage.style.top = "0";
+        stage.style.transform = "none";
+        document.body.append(stage);
+        let canvas;
+        try {
+          canvas = await render(stage, {
+            width: 480,
+            height: 800,
+            scale: 1,
+            backgroundColor: stage.querySelector(".cover") ? "#ffffff" : "#e4e2dc",
+            logging: false,
+          });
+        } finally {
+          stage.remove();
+        }
+        const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.92));
+        if (!blob) {
+          throw new Error("JPG gagal dibuat.");
+        }
+        const url = URL.createObjectURL(blob);
+        const unduh = document.createElement("a");
+        unduh.href = url;
+        unduh.download = namaScreenshot();
+        unduh.click();
+        URL.revokeObjectURL(url);
+      } catch (error) {
+        tombol.textContent = "SCREENSHOT gagal";
+        window.setTimeout(() => {
+          if (tombol.textContent === "SCREENSHOT gagal") {
+            tombol.textContent = label;
+          }
+        }, 2500);
+        return;
+      } finally {
+        tombol.disabled = false;
+        if (tombol.textContent === "SCREENSHOT…") {
+          tombol.textContent = label;
+        }
+      }
+    }
+
     function namaBerkasXtc() {
       const nomor = String(suratData.nomor).padStart(3, "0");
       const latin = (suratData.namaLatin || "surat").replace(/[^\w.-]+/g, "-");
@@ -1249,6 +1408,33 @@ $judul = 'Quran';
       }
     }
 
+    function memuatAyat(item, nomor) {
+      if (!item || item.jenis === "cover" || item.jenis === "penutup") {
+        return false;
+      }
+      if (item.jenis === "grup") {
+        return item.bagian.some((bagian) => bagian.ayat.nomorAyat === nomor);
+      }
+      return Boolean(item.ayat) && item.ayat.nomorAyat === nomor;
+    }
+
+    function lompatKeAyat(nilai) {
+      if (!suratData) {
+        return;
+      }
+      const tujuan = Number(nilai);
+      if (!tujuan || tujuan < 1 || tujuan > Number(suratData.jumlahAyat)) {
+        return;
+      }
+      const list = daftarHalaman();
+      const indeksBaru = list.findIndex((item) => memuatAyat(item, tujuan));
+      if (indeksBaru < 0) {
+        return;
+      }
+      indeks = indeksBaru;
+      tampilkanHalaman();
+    }
+
     function pindah(langkah) {
       const list = daftarHalaman();
       const berikut = indeks + langkah;
@@ -1259,6 +1445,11 @@ $judul = 'Quran';
       tampilkanHalaman();
     }
 
+    lompatForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      lompatKeAyat(lompatEl.value);
+    });
+    screenshotBtn.addEventListener("click", () => simpanScreenshot(screenshotBtn));
     beforeBtn.addEventListener("click", () => pindah(-1));
     afterBtn.addEventListener("click", () => pindah(1));
     cariEl.addEventListener("input", tampilkanDaftar);
