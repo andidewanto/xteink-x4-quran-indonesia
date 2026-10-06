@@ -10,12 +10,29 @@ Proyek ini dibuat karena masih sulit menemukan koleksi Al-Qur'an berformat `.xtc
 
 ## Pratinjau
 
+Contoh: Surah Al-Fatihah, resolusi asli 480 × 800 px.
+
 ### Sampul surah
 
-
+<p>
+  <img src="docs/preview/00-sampul.jpg" width="200" alt="Sampul Surah Al-Fatihah">
+</p>
 
 ### Halaman isi
 
+Setiap ayat memuat teks Arab, transliterasi Latin, dan terjemahan Bahasa Indonesia. Ayat pendek digabung dalam satu halaman; ayat panjang dipecah ke beberapa halaman.
+
+<p>
+  <img src="docs/preview/01-halaman.jpg" width="200" alt="Halaman 1: ayat 1 dan 2">
+  <img src="docs/preview/02-halaman.jpg" width="200" alt="Halaman 2: ayat 3 dan 4">
+  <img src="docs/preview/05-halaman.jpg" width="200" alt="Halaman 5: ayat 7">
+</p>
+
+### Penutup
+
+<p>
+  <img src="docs/preview/06-penutup.jpg" width="200" alt="Halaman penutup">
+</p>
 
 ## Cara Menggunakan
 
