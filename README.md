@@ -10,19 +10,10 @@ Proyek ini dibuat karena masih sulit menemukan koleksi Al-Qur'an berformat `.xtc
 
 ### Sampul surah
 
-![Sampul Al-Fatihah](screenshots/cover-al-fatihah.png)
+
 
 ### Halaman isi
 
-![Al-Fatihah halaman 1](screenshots/al-fatihah-page-1.png)
-
-![Al-Fatihah halaman 2](screenshots/al-fatihah-page-2.png)
-
-![Al-Fatihah halaman 3](screenshots/al-fatihah-page-3.png)
-
-![Al-Fatihah halaman 4](screenshots/al-fatihah-page-4.png)
-
-![Al-Fatihah halaman 5](screenshots/al-fatihah-page-5.png)
 
 ## Cara Menggunakan
 
