@@ -62,6 +62,10 @@ Data Al-Qur'an diperoleh melalui **EQuran.id API v2**. Dokumentasi EQuran.id men
 - EQuran.id API v2: https://equran.id/apidev/v2
 - Sumber data: Kementerian Agama Republik Indonesia
 
+Atribusi yang disarankan saat membagikan ulang:
+
+> Sumber data Al-Qur'an: EQuran.id (https://equran.id). Terjemahan Bahasa Indonesia: Kementerian Agama Republik Indonesia.
+
 Detail atribusi tersedia pada [`ATTRIBUTION.md`](ATTRIBUTION.md).
 
 # Pendekatan Pembuatan File `.xtc`

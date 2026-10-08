@@ -12,6 +12,8 @@ Dengan menggunakan atau membagikan ulang file `.xtc`:
 - Atribusi kepada EQuran.id dan Kementerian Agama Republik Indonesia sebagai sumber data harus dipertahankan.
 - Isi teks Al-Qur'an, transliterasi, dan terjemahan tidak boleh diubah lalu dibagikan seolah-olah berasal dari proyek ini atau dari sumber data.
 
+Untuk penggunaan komersial atau distribusi dalam bentuk lain, hubungi EQuran.id terlebih dahulu; izin yang diperoleh proyek ini hanya mencakup distribusi gratis.
+
 Pemelihara repositori tidak memberikan lisensi atas materi pihak ketiga yang terkandung dalam file `.xtc`; hak atas materi tersebut tetap pada pemiliknya. Lihat [`ATTRIBUTION.md`](ATTRIBUTION.md).
 
 ## Source Code Generator
