@@ -1,0 +1,4 @@
+node_modules
+config/quran-foundation.local.php
+data/.revalidasi.lock
+.claude/settings.local.json

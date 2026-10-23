@@ -8,6 +8,14 @@ Proyek ini dibuat karena masih sulit menemukan koleksi Al-Qur'an berformat `.xtc
 
 > **Penting:** proyek ini bukan proyek resmi Xteink, EQuran.id, maupun Kementerian Agama Republik Indonesia.
 
+## Pilih versi
+
+- **[Koleksi XTC v1.0](https://github.com/andidewanto/xteink-x4-quran-indonesia/releases/tag/v1.0)** — pilih ini bila ingin 114 file `.xtc` siap salin ke Xteink X4 Pro tanpa menjalankan generator.
+- **[Generator v4.1](generator-v4.1/)** — pilih ini bila ingin membuat file sendiri, memakai terjemahan lain, atau mengekspor ke Xteink, EPUB fixed-layout, dan Kindle reflowable.
+- **[Generator awal](generator/)** — source yang digunakan untuk menghasilkan koleksi XTC v1.0; dipertahankan untuk reproduksi dan referensi.
+
+Generator v4.1 tidak mengganti aset rilis v1.0. Perbedaan lengkap tersedia di [`CHANGELOG.md`](CHANGELOG.md).
+
 ## Pratinjau
 
 Contoh: Surah Al-Fatihah, resolusi asli 480 × 800 px.
@@ -169,4 +177,7 @@ Terima kasih kepada **EQuran.id** atas API Al-Qur'an, **Kementerian Agama Republ
 
 ## Versi
 
-Versi awal koleksi: **v1.0 — 2026**. Riwayat perubahan per versi tersedia di halaman [Releases](https://github.com/andidewanto/xteink-x4-quran-indonesia/releases).
+- **Koleksi v1.0** — 114 file XTC siap pakai.
+- **Generator v4.1** — source terbaru dengan ekspor Xteink, EPUB, dan Kindle.
+
+Lihat [`CHANGELOG.md`](CHANGELOG.md) untuk riwayat dan panduan memilih versi. Aset siap pakai tersedia di halaman [Releases](https://github.com/andidewanto/xteink-x4-quran-indonesia/releases).
